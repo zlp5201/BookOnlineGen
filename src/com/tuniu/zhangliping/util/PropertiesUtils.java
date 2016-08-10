@@ -20,7 +20,6 @@ public class PropertiesUtils {
 	  static { prop = new Properties();
 	    InputStream in = PropertiesUtils.class.getResourceAsStream("/config.properties");
 	    try {
-	      prop.load(in);
 	      BufferedReader bf = new BufferedReader(new InputStreamReader(in, "utf-8"));  
 	      prop.load(bf);
 	    } catch (IOException e) {
