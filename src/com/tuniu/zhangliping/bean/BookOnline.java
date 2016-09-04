@@ -25,6 +25,16 @@ public class BookOnline {
 	private String fullOnlineBookingRate;
 	// 在线预订率
 	private String onlineBookingRate;
+	// 分销前台转网络单
+	private Integer distributionToNet;
+	// 分销前台转占比
+	private String distributionToRate;
+	// 占位超时
+	private Integer occupyTimeout;
+	// 占位失败
+	private Integer occupyFail;
+	// 未知
+	private Integer unkown;
 	
 	public String getDate() {
 		return date;
@@ -73,6 +83,36 @@ public class BookOnline {
 	}
 	public void setOnlineBookingRate(String onlineBookingRate) {
 		this.onlineBookingRate = onlineBookingRate;
+	}
+	public String getDistributionToRate() {
+		return distributionToRate;
+	}
+	public void setDistributionToRate(String distributionToRate) {
+		this.distributionToRate = distributionToRate;
+	}
+	public Integer getDistributionToNet() {
+		return distributionToNet;
+	}
+	public void setDistributionToNet(Integer distributionToNet) {
+		this.distributionToNet = distributionToNet;
+	}
+	public Integer getOccupyTimeout() {
+		return occupyTimeout;
+	}
+	public void setOccupyTimeout(Integer occupyTimeout) {
+		this.occupyTimeout = occupyTimeout;
+	}
+	public Integer getOccupyFail() {
+		return occupyFail;
+	}
+	public void setOccupyFail(Integer occupyFail) {
+		this.occupyFail = occupyFail;
+	}
+	public Integer getUnkown() {
+		return unkown;
+	}
+	public void setUnkown(Integer unkown) {
+		this.unkown = unkown;
 	}
 	
 }

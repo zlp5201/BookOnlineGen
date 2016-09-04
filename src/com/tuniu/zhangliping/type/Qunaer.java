@@ -6,6 +6,7 @@ package com.tuniu.zhangliping.type;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
 import com.tuniu.zhangliping.bean.BookOnline;
@@ -40,18 +41,22 @@ public class Qunaer extends PreClassAbstract {
 		for (ColName colName : colNameList) {
 			bookOnline = new BookOnline();
 			bookOnline.setDate(new Date().toString());
-			total++;
-			if (SourceEnum.CALL.getDesc().equals(colName.getSource()))
+			// 取：产品线目的地含去哪儿字段
+			if (StringUtils.isNotEmpty(colName.getDest_name()) && colName.getDest_name().contains("去哪儿"))
 			{
-				callNum++;
-			} else if (SourceEnum.ONLINE.getDesc().equals(colName.getSource()))
-			{
-				onlineNetNum++;
-				onlineNum++;
-			} else if (SourceEnum.NET.getDesc().equals(colName.getSource()))
-			{
-				onlineNetNum++;
-				netNum++;
+				total++;
+				if (SourceEnum.CALL.getDesc().equals(colName.getSource()))
+				{
+					callNum++;
+				} else if (SourceEnum.ONLINE.getDesc().equals(colName.getSource()))
+				{
+					onlineNetNum++;
+					onlineNum++;
+				} else if (SourceEnum.NET.getDesc().equals(colName.getSource()))
+				{
+					onlineNetNum++;
+					netNum++;
+				}
 			}
 		}
 		// 电话

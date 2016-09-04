@@ -16,9 +16,11 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import com.tuniu.zhangliping.bean.ColName;
 import com.tuniu.zhangliping.gendata.IPreClass;
 import com.tuniu.zhangliping.type.DianPing;
+import com.tuniu.zhangliping.type.Distribution;
 import com.tuniu.zhangliping.type.MeiTuan;
 import com.tuniu.zhangliping.type.Qunaer;
 import com.tuniu.zhangliping.type.QunaerPre;
+import com.tuniu.zhangliping.type.Total;
 import com.tuniu.zhangliping.type.XiechengPre;
 import com.tuniu.zhangliping.util.ExcelImport;
 import com.tuniu.zhangliping.util.PropertiesUtils;
@@ -47,23 +49,33 @@ public class ReportGen{
     		// 第一步，创建一个webbook，对应一个Excel文件  
     		HSSFWorkbook wb = new HSSFWorkbook();
     		
+    		
+    		//0、开始生成整体数据报表
+    		log.info("开始生成整体数据报表");
+    		IPreClass total = new Total(wb, colNameList, "整体数据");
+    		
     		//1、开始生成携程预付报表
     		log.info("开始生成携程预付报表");
     		IPreClass xiechengPre = new XiechengPre(wb, colNameList, "携程预付");
     		
     		// 2、开始生成美团预付报表
-    		log.info("开始生成美团点评报表");
-    		IPreClass meiTuan = new MeiTuan(wb, colNameList, "美团点评");
+    		log.info("开始生成美团预付报表");
+    		IPreClass meiTuan = new MeiTuan(wb, colNameList, "美团预付");
     		
     		// 3、开始生成去哪儿预付
     		log.info("开始生成去哪儿预付报表");
     		IPreClass qunaerPre = new QunaerPre(wb, colNameList, "去哪儿预付");
     		// 4、开始生成点评团购数据
-    		log.info("开始生成点评团购报表");
-    		IPreClass dianpin = new DianPing(wb, colNameList, "点评团购");
+    		log.info("开始生成点评团购数据报表");
+    		IPreClass dianpin = new DianPing(wb, colNameList, "点评团购数据");
     		// 5、开始生成去哪儿数据
     		log.info("开始生成去哪儿报表");
     		IPreClass qunaer = new Qunaer(wb, colNameList, "去哪儿");
+    		
+    		// 5、开始生成分销数据
+    		log.info("开始生成分销报表");
+    		IPreClass distribution = new Distribution(wb, colNameList, "分销");
+    		
     		// 第六步，将文件存到指定位置  
 	        try  
 	        {  

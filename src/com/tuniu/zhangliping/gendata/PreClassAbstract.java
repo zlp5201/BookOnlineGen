@@ -95,6 +95,7 @@ public abstract class PreClassAbstract implements IPreClass{
 		HSSFRow row = null;
 		row = sheet.createRow((int) 0 + 1);  
 		    // 第四步，创建单元格，并设置值  
+
 	    row.createCell((short) 0).setCellValue("2016-08-07");  
 	    row.createCell((short) 1).setCellValue(bookOnline.getOnlineNum());  
 	    row.createCell((short) 2).setCellValue(bookOnline.getNetNum());  

@@ -44,6 +44,8 @@ public class ColName {
 	private String reason_type;
 	// 占位总时长
 	private String revert_duration;
+	//资源ID TODO
+	private String resource_id;
 	// 资源编号
 	private String res_main_id;
 	// 资源名称
@@ -58,6 +60,8 @@ public class ColName {
 	private String bed_name;
 	// staff_id
 	private String staff_id;
+	// 备注信息
+	private String memo_content;
 	// 是否超级自由行
 	private String auto_package;
 	// 产品专员
@@ -335,6 +339,18 @@ public class ColName {
 	}
 	public void setA15(String a15) {
 		this.a15 = a15;
+	}
+	public String getResource_id() {
+		return resource_id;
+	}
+	public void setResource_id(String resource_id) {
+		this.resource_id = resource_id;
+	}
+	public String getMemo_content() {
+		return memo_content;
+	}
+	public void setMemo_content(String memo_content) {
+		this.memo_content = memo_content;
 	}
 	
 }

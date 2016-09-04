@@ -33,6 +33,7 @@ public class ColMap {
 		header.put("转网络单原因", "reason");
 		header.put("网络单原因大类", "reason_type");
 		header.put("占位总时长", "revert_duration");
+		header.put("资源ID", "resource_id");
 		header.put("资源编号", "res_main_id");
 		header.put("资源名称", "resource_name");
 		header.put("资源类型", "resource_type");
@@ -41,6 +42,7 @@ public class ColMap {
 		header.put("床型", "bed_name");
 		header.put("staff_id", "staff_id");
 		header.put("是否超级自由行", "auto_package");
+		header.put("备注信息", "memo_content");
 		header.put("产品专员", "a1");
 		header.put("三级部门名_产品", "a2");
 		header.put("三级部门领导_产品", "a3");

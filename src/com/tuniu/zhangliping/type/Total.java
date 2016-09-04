@@ -19,15 +19,15 @@ import com.tuniu.zhangliping.util.NumberUtil;
  * @author zhangliping
  *
  */
-public class MeiTuan extends PreClassAbstract{
+public class Total extends PreClassAbstract {
 
-	public MeiTuan(HSSFWorkbook wb, List<ColName> colNameList, String sheetName) {
+	public Total(HSSFWorkbook wb, List<ColName> colNameList, String sheetName) {
 		super(wb, colNameList, sheetName);
+		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * 
-	 * 根据规则生成美团数据
+	/* (non-Javadoc)
+	 * @see com.tuniu.zhangliping.gendata.PreClassAbstract#filter(java.util.List)
 	 */
 	@Override
 	public BookOnline filter(List<ColName> colNameList) {
@@ -41,8 +41,8 @@ public class MeiTuan extends PreClassAbstract{
 		for (ColName colName : colNameList) {
 			bookOnline = new BookOnline();
 			bookOnline.setDate(new Date().toString());
-			// 取：产品线目的地含美团预付字段
-			if (StringUtils.isNotEmpty(colName.getDest_name()) && colName.getDest_name().contains("美团预付"))
+			// 取：产品线目的地含去哪儿字段
+			if (StringUtils.isNotEmpty(colName.getDest_name()) && colName.getDest_name().contains("去哪儿"))
 			{
 				total++;
 				if (SourceEnum.CALL.getDesc().equals(colName.getSource()))
