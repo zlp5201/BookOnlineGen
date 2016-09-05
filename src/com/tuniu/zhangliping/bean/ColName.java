@@ -44,7 +44,7 @@ public class ColName {
 	private String reason_type;
 	// 占位总时长
 	private String revert_duration;
-	//资源ID TODO
+	//资源ID
 	private String resource_id;
 	// 资源编号
 	private String res_main_id;

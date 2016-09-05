@@ -23,9 +23,10 @@ import com.tuniu.zhangliping.util.NumberUtil;
  */
 public class QunaerPre extends PreClassAbstract {
 
+
 	public QunaerPre(HSSFWorkbook wb, List<ColName> colNameList,
-			String sheetName) {
-		super(wb, colNameList, sheetName);
+			String sheetName, String fileName) {
+		super(wb, colNameList, sheetName, fileName);
 	}
 
 	/* (non-Javadoc)

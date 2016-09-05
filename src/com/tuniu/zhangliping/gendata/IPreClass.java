@@ -7,6 +7,7 @@ package com.tuniu.zhangliping.gendata;
 import java.util.List;
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
@@ -25,14 +26,14 @@ public interface IPreClass {
 	 * @param typeName sheet页文件
 	 * @return
 	 */
-	public abstract HSSFCell genHeader(HSSFWorkbook wb, HSSFSheet sheet);
+	public abstract HSSFCell genHeader(HSSFRow row, HSSFWorkbook wb, HSSFSheet sheet);
 	
 	/**
 	 * 
 	 * @param colNameList execl读取的文件
 	 * @return 在线预订率计算结果
 	 */
-	public abstract void genData(BookOnline bookOnline, HSSFSheet sheet);
+	public abstract void genData(HSSFRow row, BookOnline bookOnline, HSSFSheet sheet);
 	
 	/**
 	 * 

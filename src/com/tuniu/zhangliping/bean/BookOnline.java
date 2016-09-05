@@ -9,65 +9,122 @@ package com.tuniu.zhangliping.bean;
  *
  */
 public class BookOnline {
-	// 日期
+	/**
+	 *  日期
+	 */
 	private String date;
-	// 在线
+	/**
+	 *  在线
+	 */
 	private Integer onlineNum;
-	// 网络
+	/**
+	 *  网络
+	 */
 	private Integer netNum;
-	// 在线+网络
+	/**
+	 *  在线+网络
+	 */
 	private Integer onlineNetNum;
-	// 电话 
+	/**
+	 *  电话 
+	 */
 	private Integer callNum;
-	// 总订单
+	/**
+	 *  总订单
+	 */
 	private Integer total;
-	// 完全在线预订率
+	/**
+	 *  完全在线预订率
+	 */
 	private String fullOnlineBookingRate;
-	// 在线预订率
+	/** 
+	 * 在线预订率
+	 * 
+	 */
 	private String onlineBookingRate;
 	
 	/** 分销 */
-	// 分销前台转网络单
+	/**
+	 *  分销前台转网络单
+	 */
 	private Integer distributionToNet;
-	// 分销前台转占比
+	/**
+	 *  分销前台转占比
+	 */
 	private String distributionToRate;
-	// 占位超时
+	/**
+	 *  占位超时
+	 */
 	private Integer occupyTimeout;
-	// 占位失败
+	/**
+	 *  占位失败
+	 */
 	private Integer occupyFail;
-	// 未知
+	/**
+	 *  未知
+	 */
 	private Integer unkown;
 	
 	
 	/** 整体数据 */
-	// 无库存转网络单
+	/**
+	 *  无库存转网络单
+	 */
 	private Integer noKuncunToNetTotal;
-	// 无库存占总订单占比
+	/**
+	 *  无库存占总订单占比
+	 */
 	private String noKuncunToNetTotalRate;
-	// 分销转网络单
+	/**
+	 *  分销转网络单
+	 */
 	private Integer distributionToNetTotal;
-	// 分销占总订单
+	/**
+	 *  分销占总订单
+	 */
 	private String distributionToNetTotalRate;
-	// 占位失败
+	/**
+	 *  占位失败
+	 */
 	private Integer occupyFailTotal;
-	// 占位失败占比
+	/**
+	 *  占位失败占比
+	 */
 	private String occupyFailTotalRate;
-	// 淘宝转网络订单
+	/**
+	 *  淘宝转网络订单
+	 */
 	private Integer taobaoTotal;
-	// 淘宝转网络订单占比
+	/**
+	 *  淘宝转网络订单占比
+	 */
 	private String taobaoTotalRate;
-	// 点评前台转网路订单
+	/**
+	 *  点评前台转网路订单
+	 */
 	private Integer dianpinToNetTotal;
-	// 点评前台转网路订单占比
-	private Integer dianpinToNetTotalRate;
-	// 前台转网路单
+	/**
+	 *  点评前台转网路订单占比
+	 */
+	private String dianpinToNetTotalRate;
+	/**
+	 *  前台转网路单
+	 */
 	private Integer beforeToNet;
-	// 即保房
+	/**
+	 *  即保房
+	 */
 	private Integer isJibao;
-	// 未知原因
+	/**
+	 *  未知原因
+	 */
 	private Integer unKownTotal;
 	
-	
+	/**点评团购数据***/
+	// 资源未匹配订单量
+	private Integer resourceNoMatch;
+	// 资源未匹配占比
+	private String resourceNoMatchRate;
 	
 	
 	public String getDate() {
@@ -202,10 +259,10 @@ public class BookOnline {
 	public void setDianpinToNetTotal(Integer dianpinToNetTotal) {
 		this.dianpinToNetTotal = dianpinToNetTotal;
 	}
-	public Integer getDianpinToNetTotalRate() {
+	public String getDianpinToNetTotalRate() {
 		return dianpinToNetTotalRate;
 	}
-	public void setDianpinToNetTotalRate(Integer dianpinToNetTotalRate) {
+	public void setDianpinToNetTotalRate(String dianpinToNetTotalRate) {
 		this.dianpinToNetTotalRate = dianpinToNetTotalRate;
 	}
 	public Integer getBeforeToNet() {
@@ -225,6 +282,18 @@ public class BookOnline {
 	}
 	public void setUnKownTotal(Integer unKownTotal) {
 		this.unKownTotal = unKownTotal;
+	}
+	public Integer getResourceNoMatch() {
+		return resourceNoMatch;
+	}
+	public void setResourceNoMatch(Integer resourceNoMatch) {
+		this.resourceNoMatch = resourceNoMatch;
+	}
+	public String getResourceNoMatchRate() {
+		return resourceNoMatchRate;
+	}
+	public void setResourceNoMatchRate(String resourceNoMatchRate) {
+		this.resourceNoMatchRate = resourceNoMatchRate;
 	}
 	
 }

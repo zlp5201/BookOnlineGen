@@ -21,8 +21,10 @@ import com.tuniu.zhangliping.util.NumberUtil;
  */
 public class Qunaer extends PreClassAbstract {
 
-	public Qunaer(HSSFWorkbook wb, List<ColName> colNameList, String sheetName) {
-		super(wb, colNameList, sheetName);
+
+	public Qunaer(HSSFWorkbook wb, List<ColName> colNameList, String sheetName,
+			String fileName) {
+		super(wb, colNameList, sheetName, fileName);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -42,7 +44,7 @@ public class Qunaer extends PreClassAbstract {
 			bookOnline = new BookOnline();
 			bookOnline.setDate(new Date().toString());
 			// 取：产品线目的地含去哪儿字段
-			if (StringUtils.isNotEmpty(colName.getDest_name()) && colName.getDest_name().contains("去哪儿"))
+			if (StringUtils.isNotEmpty(colName.getDest_name()) && colName.getDest_name().contains("去哪儿") && !colName.getDest_name().contains("去哪儿预付"))
 			{
 				total++;
 				if (SourceEnum.CALL.getDesc().equals(colName.getSource()))

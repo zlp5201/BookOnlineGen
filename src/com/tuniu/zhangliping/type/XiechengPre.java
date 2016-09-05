@@ -22,8 +22,8 @@ import com.tuniu.zhangliping.util.NumberUtil;
 public class XiechengPre extends PreClassAbstract{
 
 	public XiechengPre(HSSFWorkbook wb, List<ColName> colNameList,
-			String sheetName) {
-		super(wb, colNameList, sheetName);
+			String sheetName, String fileName) {
+		super(wb, colNameList, sheetName, fileName);
 	}
 
 	/* (non-Javadoc)

@@ -21,8 +21,10 @@ import com.tuniu.zhangliping.util.NumberUtil;
  */
 public class MeiTuan extends PreClassAbstract{
 
-	public MeiTuan(HSSFWorkbook wb, List<ColName> colNameList, String sheetName) {
-		super(wb, colNameList, sheetName);
+
+	public MeiTuan(HSSFWorkbook wb, List<ColName> colNameList,
+			String sheetName, String fileName) {
+		super(wb, colNameList, sheetName, fileName);
 	}
 
 	/**

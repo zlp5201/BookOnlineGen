@@ -7,6 +7,10 @@ import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFCellStyle;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
 import com.tuniu.zhangliping.bean.BookOnline;
@@ -22,10 +26,12 @@ import com.tuniu.zhangliping.util.NumberUtil;
 public class DianPing extends PreClassAbstract {
 
 	
-	public DianPing(HSSFWorkbook wb, List<ColName> colNameList, String sheetName) {
-		super(wb, colNameList, sheetName);
-	}
 	
+	public DianPing(HSSFWorkbook wb, List<ColName> colNameList,
+			String sheetName, String fileName) {
+		super(wb, colNameList, sheetName, fileName);
+	}
+
 	/* (non-Javadoc)
 	 * @see com.tuniu.zhangliping.gendata.PreClassAbstract#filter(java.util.List)
 	 */
@@ -37,6 +43,7 @@ public class DianPing extends PreClassAbstract {
 		Integer netNum = 0;
 		Integer onlineNetNum = 0;
 		Integer total = 0;
+		Integer resourceNoMatch = 0;
 		
 		for (ColName colName : colNameList) {
 			bookOnline = new BookOnline();
@@ -57,6 +64,12 @@ public class DianPing extends PreClassAbstract {
 					onlineNetNum++;
 					netNum++;
 				}
+				
+				if (StringUtils.isNotEmpty(colName.getReason_type()) && colName.getReason_type().contains("网络订单"))
+				{
+					resourceNoMatch++;
+				}
+				
 			}
 		}
 		// 电话
@@ -73,8 +86,36 @@ public class DianPing extends PreClassAbstract {
 		bookOnline.setFullOnlineBookingRate(NumberUtil.double2String(onlineNum * 100.0/ total) + "%");
 		// 在线预订率
 		bookOnline.setOnlineBookingRate(NumberUtil.double2String(onlineNetNum * 100.0/ total) + "%");
+		// 资源未匹配订单量
+		bookOnline.setResourceNoMatch(resourceNoMatch);
+		// 资源未匹配占比
+		bookOnline.setResourceNoMatchRate(NumberUtil.double2String(resourceNoMatch * 100.0/ total) + "%");
 		
 		return bookOnline;
 	}
 
+	@Override
+	public void customGenData(HSSFRow row, BookOnline bookOnline,
+			HSSFSheet sheet) {
+	    row.createCell((short) 8).setCellValue(bookOnline.getResourceNoMatch());
+	    row.createCell((short) 9).setCellValue(bookOnline.getResourceNoMatchRate());
+	}
+
+	@Override
+	public HSSFCell customGenHeader(HSSFRow row, HSSFWorkbook wb,
+			HSSFSheet sheet) {
+		// 第一步，创建一个webbook，对应一个Excel文件  
+		HSSFCellStyle style = wb.createCellStyle();  
+		// 第三步，在sheet中添加表头第0行,注意老版本poi对Excel的行数列数有限制short 
+		HSSFCell cell = null;
+		cell = row.createCell((short) 8);  
+		cell.setCellValue("资源未匹配订单量");  
+		cell.setCellStyle(style);
+		
+		cell = row.createCell((short) 9);  
+		cell.setCellValue("资源未匹配占比");  
+		cell.setCellStyle(style);
+		
+		return cell;
+	}
 }

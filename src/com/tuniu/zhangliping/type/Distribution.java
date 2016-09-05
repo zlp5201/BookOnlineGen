@@ -26,14 +26,13 @@ import com.tuniu.zhangliping.util.NumberUtil;
  */
 public class Distribution extends PreClassAbstract {
 
+
 	public Distribution(HSSFWorkbook wb, List<ColName> colNameList,
-			String sheetName) {
-		super(wb, colNameList, sheetName);
+			String sheetName, String fileName) {
+		super(wb, colNameList, sheetName, fileName);
+		// TODO Auto-generated constructor stub
 	}
 
-	/* (non-Javadoc)
-	 * @see com.tuniu.zhangliping.gendata.PreClassAbstract#filter(java.util.List)
-	 */
 	@Override
 	public BookOnline filter(List<ColName> colNameList) {
 		BookOnline bookOnline = null;
@@ -64,27 +63,27 @@ public class Distribution extends PreClassAbstract {
 				{
 					onlineNetNum++;
 					netNum++;
+					if (StringUtils.isEmpty(colName.getReason_type()))
+					{
+						unkown++;
+					}
+					// 分销前台转网络单(取：客服端明细为分销且网络单原因大类为网络订单)
+					if (StringUtils.isNotEmpty(colName.getReason_type()) && colName.getReason_type().contains("网络订单"))
+					{
+						distributionToNet++;
+					}
+					// 分占位超时(取：客服端明细为分销且网络单原因大类为占位超时)
+					if (StringUtils.isNotEmpty(colName.getReason_type()) && colName.getReason_type().contains("占位超时"))
+					{
+						occupyTimeout++;
+					}
+					// 占位失败(取：客服端明细为分销且网络单原因大类为占位失败)
+					if (StringUtils.isNotEmpty(colName.getReason_type()) && colName.getReason_type().contains("占位失败"))
+					{
+						occupyFail++;
+					}
 				}
 				
-				if (StringUtils.isEmpty(colName.getReason_type()))
-				{
-					unkown++;
-				}
-				// 分销前台转网络单(取：客服端明细为分销且网络单原因大类为网络订单)
-				if (StringUtils.isNotEmpty(colName.getReason_type()) && colName.getReason_type().contains("网络订单"))
-				{
-					distributionToNet++;
-				}
-				// 分占位超时(取：客服端明细为分销且网络单原因大类为占位超时)
-				if (StringUtils.isNotEmpty(colName.getReason_type()) && colName.getReason_type().contains("占位超时"))
-				{
-					occupyTimeout++;
-				}
-				// 占位失败(取：客服端明细为分销且网络单原因大类为占位失败)
-				if (StringUtils.isNotEmpty(colName.getReason_type()) && colName.getReason_type().contains("占位失败"))
-				{
-					occupyFail++;
-				}
 			}
 		}
 		// 电话
@@ -114,43 +113,25 @@ public class Distribution extends PreClassAbstract {
 		return bookOnline;
 	}
 
+
 	@Override
-	public HSSFCell genHeader(HSSFWorkbook wb, HSSFSheet sheet) {
+	public void customGenData(HSSFRow row, BookOnline bookOnline,
+			HSSFSheet sheet) {
+	    row.createCell((short) 8).setCellValue(bookOnline.getDistributionToNet());
+	    row.createCell((short) 9).setCellValue(bookOnline.getDistributionToRate());
+	    row.createCell((short) 10).setCellValue(bookOnline.getOccupyTimeout());
+	    row.createCell((short) 11).setCellValue(bookOnline.getOccupyFail());
+	    row.createCell((short) 12).setCellValue(bookOnline.getUnkown());
+		
+	}
+
+	@Override
+	public HSSFCell customGenHeader(HSSFRow row, HSSFWorkbook wb,
+			HSSFSheet sheet) {
 		// 第一步，创建一个webbook，对应一个Excel文件  
 		HSSFCellStyle style = wb.createCellStyle();  
 		// 第三步，在sheet中添加表头第0行,注意老版本poi对Excel的行数列数有限制short  
-		HSSFRow row = sheet.createRow((int) 0);  
-		// 第四步，创建单元格，并设置值表头 设置表头居中  
-		style.setAlignment(HSSFCellStyle.ALIGN_CENTER); // 创建一个居中格式  
-		HSSFCell cell = row.createCell((short) 0);  
-		cell.setCellValue("日期");  
-		cell.setCellStyle(style);  
-		cell = row.createCell((short) 1);
-		cell.setCellValue("在线");  
-		cell.setCellStyle(style);  
-		cell = row.createCell((short) 2);  
-		cell.setCellValue("网络");  
-		cell.setCellStyle(style);  
-		cell = row.createCell((short) 3);  
-		cell.setCellValue("在线+网络");  
-		cell.setCellStyle(style);  
-		
-		cell = row.createCell((short) 4);  
-		cell.setCellValue("电话");  
-		cell.setCellStyle(style);
-		
-		cell = row.createCell((short) 5);  
-		cell.setCellValue("总订单");  
-		cell.setCellStyle(style);
-		
-		cell = row.createCell((short) 6);  
-		cell.setCellValue("完全在线预订率");  
-		cell.setCellStyle(style);
-		
-		cell = row.createCell((short) 7);  
-		cell.setCellValue("在线预订率");  
-		cell.setCellStyle(style);
-		
+		HSSFCell cell = null;
 		cell = row.createCell((short)8);
 		cell.setCellValue("分销前台转网络单");
 		cell.setCellStyle(style);
@@ -169,31 +150,7 @@ public class Distribution extends PreClassAbstract {
 		cell = row.createCell((short)12);
 		cell.setCellValue("未知");
 		cell.setCellStyle(style);
-		return cell;
-	}
-
-	@Override
-	public void genData(BookOnline bookOnline, HSSFSheet sheet) {
-		HSSFRow row = null;
-		row = sheet.createRow((int) 0 + 1);  
-		    // 第四步，创建单元格，并设置值  
-	    row.createCell((short) 0).setCellValue("2016-08-07");  
-	    row.createCell((short) 1).setCellValue(bookOnline.getOnlineNum());  
-	    row.createCell((short) 2).setCellValue(bookOnline.getNetNum());  
-	    row.createCell((short) 3).setCellValue(bookOnline.getOnlineNetNum());  
-	    row.createCell((short) 4).setCellValue(bookOnline.getCallNum());  
-	    row.createCell((short) 5).setCellValue(bookOnline.getTotal());  
-	    row.createCell((short) 6).setCellValue(bookOnline.getFullOnlineBookingRate());  
-	    row.createCell((short) 7).setCellValue(bookOnline.getOnlineBookingRate());
-	    
-	    
-	    
-	    
-	    
-	    row.createCell((short) 8).setCellValue(bookOnline.getDistributionToNet());
-	    row.createCell((short) 9).setCellValue(bookOnline.getDistributionToRate());
-	    row.createCell((short) 10).setCellValue(bookOnline.getOccupyTimeout());
-	    row.createCell((short) 11).setCellValue(bookOnline.getOccupyFail());
-	    row.createCell((short) 12).setCellValue(bookOnline.getUnkown());
+	
+	return cell;
 	}
 }
