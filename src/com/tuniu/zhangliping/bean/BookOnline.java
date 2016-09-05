@@ -25,6 +25,8 @@ public class BookOnline {
 	private String fullOnlineBookingRate;
 	// 在线预订率
 	private String onlineBookingRate;
+	
+	/** 分销 */
 	// 分销前台转网络单
 	private Integer distributionToNet;
 	// 分销前台转占比
@@ -35,6 +37,38 @@ public class BookOnline {
 	private Integer occupyFail;
 	// 未知
 	private Integer unkown;
+	
+	
+	/** 整体数据 */
+	// 无库存转网络单
+	private Integer noKuncunToNetTotal;
+	// 无库存占总订单占比
+	private String noKuncunToNetTotalRate;
+	// 分销转网络单
+	private Integer distributionToNetTotal;
+	// 分销占总订单
+	private String distributionToNetTotalRate;
+	// 占位失败
+	private Integer occupyFailTotal;
+	// 占位失败占比
+	private String occupyFailTotalRate;
+	// 淘宝转网络订单
+	private Integer taobaoTotal;
+	// 淘宝转网络订单占比
+	private String taobaoTotalRate;
+	// 点评前台转网路订单
+	private Integer dianpinToNetTotal;
+	// 点评前台转网路订单占比
+	private Integer dianpinToNetTotalRate;
+	// 前台转网路单
+	private Integer beforeToNet;
+	// 即保房
+	private Integer isJibao;
+	// 未知原因
+	private Integer unKownTotal;
+	
+	
+	
 	
 	public String getDate() {
 		return date;
@@ -113,6 +147,84 @@ public class BookOnline {
 	}
 	public void setUnkown(Integer unkown) {
 		this.unkown = unkown;
+	}
+	public Integer getNoKuncunToNetTotal() {
+		return noKuncunToNetTotal;
+	}
+	public void setNoKuncunToNetTotal(Integer noKuncunToNetTotal) {
+		this.noKuncunToNetTotal = noKuncunToNetTotal;
+	}
+	public String getNoKuncunToNetTotalRate() {
+		return noKuncunToNetTotalRate;
+	}
+	public void setNoKuncunToNetTotalRate(String noKuncunToNetTotalRate) {
+		this.noKuncunToNetTotalRate = noKuncunToNetTotalRate;
+	}
+	public Integer getDistributionToNetTotal() {
+		return distributionToNetTotal;
+	}
+	public void setDistributionToNetTotal(Integer distributionToNetTotal) {
+		this.distributionToNetTotal = distributionToNetTotal;
+	}
+	public String getDistributionToNetTotalRate() {
+		return distributionToNetTotalRate;
+	}
+	public void setDistributionToNetTotalRate(String distributionToNetTotalRate) {
+		this.distributionToNetTotalRate = distributionToNetTotalRate;
+	}
+	public Integer getOccupyFailTotal() {
+		return occupyFailTotal;
+	}
+	public void setOccupyFailTotal(Integer occupyFailTotal) {
+		this.occupyFailTotal = occupyFailTotal;
+	}
+	public String getOccupyFailTotalRate() {
+		return occupyFailTotalRate;
+	}
+	public void setOccupyFailTotalRate(String occupyFailTotalRate) {
+		this.occupyFailTotalRate = occupyFailTotalRate;
+	}
+	public Integer getTaobaoTotal() {
+		return taobaoTotal;
+	}
+	public void setTaobaoTotal(Integer taobaoTotal) {
+		this.taobaoTotal = taobaoTotal;
+	}
+	public String getTaobaoTotalRate() {
+		return taobaoTotalRate;
+	}
+	public void setTaobaoTotalRate(String taobaoTotalRate) {
+		this.taobaoTotalRate = taobaoTotalRate;
+	}
+	public Integer getDianpinToNetTotal() {
+		return dianpinToNetTotal;
+	}
+	public void setDianpinToNetTotal(Integer dianpinToNetTotal) {
+		this.dianpinToNetTotal = dianpinToNetTotal;
+	}
+	public Integer getDianpinToNetTotalRate() {
+		return dianpinToNetTotalRate;
+	}
+	public void setDianpinToNetTotalRate(Integer dianpinToNetTotalRate) {
+		this.dianpinToNetTotalRate = dianpinToNetTotalRate;
+	}
+	public Integer getBeforeToNet() {
+		return beforeToNet;
+	}
+	public void setBeforeToNet(Integer beforeToNet) {
+		this.beforeToNet = beforeToNet;
+	}
+	public Integer getIsJibao() {
+		return isJibao;
+	}
+	public void setIsJibao(Integer isJibao) {
+		this.isJibao = isJibao;
+	}
+	public Integer getUnKownTotal() {
+		return unKownTotal;
+	}
+	public void setUnKownTotal(Integer unKownTotal) {
+		this.unKownTotal = unKownTotal;
 	}
 	
 }
